@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAnthropic, CLAUDE_MODEL } from "@/lib/anthropic";
+import { getAnthropic, getClaudeModel } from "@/lib/anthropic";
 import { addMissingVocabFromList } from "@/lib/notion";
 
 function extractJsonObject(text: string): string {
@@ -36,7 +36,7 @@ ${text.trim().slice(0, 14000)}
 ---`;
 
     const msg = await client.messages.create({
-      model: CLAUDE_MODEL,
+      model: getClaudeModel(),
       max_tokens: 2048,
       messages: [{ role: "user", content: body }],
     });

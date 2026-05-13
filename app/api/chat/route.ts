@@ -1,4 +1,4 @@
-import { getAnthropic, CLAUDE_MODEL } from "@/lib/anthropic";
+import { getAnthropic, getClaudeModel } from "@/lib/anthropic";
 import { getLearnerProgressForPrompt } from "@/lib/learner-context";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     const client = getAnthropic();
     const stream = await client.messages.stream({
-      model: CLAUDE_MODEL,
+      model: getClaudeModel(),
       max_tokens: 2048,
       system,
       messages: messages.map((m) => ({

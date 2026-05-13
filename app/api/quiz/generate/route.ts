@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAnthropic, CLAUDE_MODEL } from "@/lib/anthropic";
+import { getAnthropic, getClaudeModel } from "@/lib/anthropic";
 import { getLearnerProgressForPrompt } from "@/lib/learner-context";
 import type { QuizQuestion } from "@/lib/quiz-types";
 import {
@@ -75,7 +75,7 @@ Rules:
 - Return ONLY valid JSON, no markdown fences.`;
 
     const msg = await client.messages.create({
-      model: CLAUDE_MODEL,
+      model: getClaudeModel(),
       max_tokens: 4096,
       messages: [{ role: "user", content: userPrompt }],
     });

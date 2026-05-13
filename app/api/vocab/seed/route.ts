@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAnthropic, CLAUDE_MODEL } from "@/lib/anthropic";
+import { getAnthropic, getClaudeModel } from "@/lib/anthropic";
 import {
   addVocabWord,
   hasUsableVocabForQuiz,
@@ -42,7 +42,7 @@ Requirements:
 Return ONLY the JSON object.`;
 
     const msg = await client.messages.create({
-      model: CLAUDE_MODEL,
+      model: getClaudeModel(),
       max_tokens: 4096,
       messages: [{ role: "user", content: prompt }],
     });
