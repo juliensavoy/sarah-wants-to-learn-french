@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #fff5f9;
+  --ink: #4a3548;
+  --muted: #8f6f82;
+  --accent: #c94b7d;
+  --accent-hover: #b03d6c;
+  --accent-soft: #fde8f0;
+  --accent-muted: #f5c4d6;
+  --gold: #c9a06c;
+  --gold-soft: #faf5eb;
+  --paper: #fffcfe;
+  --paper-shine: #ffffff;
+  --shadow-fancy: 0 8px 32px color-mix(in oklab, var(--accent) 18%, transparent),
+    0 2px 8px color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow-card: 0 4px 24px color-mix(in oklab, var(--accent) 12%, transparent);
+  --success-bg: #f0fdf6;
+  --success-border: #86efac;
+  --success-text: #166534;
+  --wrong-bg: #fdf2f7;
+  --wrong-border: #f9a8d4;
+  --wrong-text: #9d174d;
+}
+
+body {
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(
+      ellipse 130% 70% at 50% -15%,
+      color-mix(in oklab, #ffb7d5 55%, transparent),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse 90% 55% at 100% 20%,
+      color-mix(in oklab, var(--gold) 22%, transparent),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 0% 85%,
+      color-mix(in oklab, var(--accent) 14%, transparent),
+      transparent 42%
+    );
+  background-attachment: fixed;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .card-glass {
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--paper) 92%, var(--accent-soft)),
+      var(--paper-shine)
+    );
+    box-shadow: var(--shadow-card);
+    border: 1px solid color-mix(in oklab, var(--accent) 22%, white);
+  }
+
+  .btn-primary {
+    background: linear-gradient(
+      165deg,
+      color-mix(in oklab, var(--accent) 95%, white),
+      var(--accent-hover)
+    );
+    color: white;
+    box-shadow: var(--shadow-fancy);
+    text-shadow: 0 1px 0 color-mix(in oklab, black 12%, transparent);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.06);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .nav-pill {
+    border: 1px solid color-mix(in oklab, var(--accent) 28%, transparent);
+    background: color-mix(in oklab, var(--paper) 88%, var(--accent-soft));
+  }
+
+  .nav-pill:hover {
+    background: var(--accent-soft);
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.55s ease-out both;
+  }
+
+  .animate-fade-up-delay {
+    animation: fade-up 0.55s ease-out 0.08s both;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.55s ease-out 0.16s both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-fancy {
+  border: 3px solid var(--accent-muted);
+  border-top-color: var(--accent);
+  animation: spin-slow 0.85s linear infinite;
+}
